@@ -7,8 +7,8 @@ public class Employee {
     private int department;
     private int salary;
 
-    public Employee(Person person, int department, int salary) {
-        this.person = person;
+    public Employee(String fullname, int department, int salary) {
+        this.fullname = fullname;
         this.department = department;
         this.salary = salary;
         id = employeeCounter;

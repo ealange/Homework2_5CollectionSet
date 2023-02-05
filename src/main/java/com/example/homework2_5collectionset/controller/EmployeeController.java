@@ -29,6 +29,12 @@ public class EmployeeController {
         return EmployeeService.printAllEmployee;
 
     }
+    @GetMapping("/fillOutList")
+    public List<Employee> fillOutListEmployee() {
+
+        return EmployeeService.fillOutListEmployee;
+
+    }
 
     @GetMapping("/sumSalary")
     public String getCalculateSalarySum() {
