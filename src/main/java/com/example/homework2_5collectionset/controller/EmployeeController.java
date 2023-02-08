@@ -5,8 +5,8 @@ import com.example.homework2_5collectionset.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pro.jd10.lange.hw23introductiontomavenandspringboot.service.CalculatorService;
 
 import java.util.List;
 
@@ -20,44 +20,69 @@ public class EmployeeController {
 
     @GetMapping
     public String welcome() {
-        return "Добро пожаловать в калькулятор";
+        return "Добро пожаловать в базу данных";
     }
 
     @GetMapping("/printAll")
     public List<Employee> printAllEmployee() {
 
-        return EmployeeService.printAllEmployee;
+        return employeeService.printAllEmployee();
 
     }
+
     @GetMapping("/fillOutList")
-    public List<Employee> fillOutListEmployee() {
+    public boolean fillOutListEmployee() {
 
-        return EmployeeService.fillOutListEmployee;
+        return employeeService.fillOutListEmployee();
+
+    }
+
+    @GetMapping("/add")
+    public boolean add(@RequestParam String name,
+                       @RequestParam String surname) {
+
+        return employeeService.add(name, surname);
 
     }
 
-    @GetMapping("/sumSalary")
-    public String getCalculateSalarySum() {
-        String calculateSalarySum = employeeService.getCalculateSalarySum();
-        return calculateSalarySum;
-    }
+    @GetMapping("/search")
+    public Employee search(@RequestParam String name,
+                           @RequestParam String surname) {
 
-    @GetMapping("/minSalary")
-    public String getEmployeeMinSalary() {
-        String employeeMinSalary = employeeService.getEmployeeMinSalary;
-        return employeeMinSalary;
-    }
-
-    @GetMapping("/maxSalary")
-    public String getEmployeeMaxSalary() {
-        String employeeMaxSalary = employeeService.getEmployeeMaxSalary();
-        return employeeMaxSalary;
-    }
-
-    @GetMapping("/averageSalary")
-    public String getCalculateAverageSalary() {
-        String averageSalaryEmployee = employeeService.getAndCalculateAverageSalary();
-        return averageSalaryEmployee;
+        return employeeService.search(name, surname);
 
     }
+
+    @GetMapping("/remove")
+    public boolean remove(@RequestParam String name,
+                          @RequestParam String surname) {
+
+        return employeeService.remove(name, surname);
+
+    }
+
+    // @GetMapping("/sumSalary")
+    // public String getCalculateSalarySum() {
+    //     double calculateSalarySum = employeeService.getCalculateSalarySum();
+    //     return String.valueOf(calculateSalarySum);
+    // }
+//
+    // @GetMapping("/minSalary")
+    // public String getEmployeeMinSalary() {
+    //     String employeeMinSalary = employeeService.getEmployeeMinSalary;
+    //     return employeeMinSalary;
+    // }
+//
+    // @GetMapping("/maxSalary")
+    // public String getEmployeeMaxSalary() {
+    //     String employeeMaxSalary = employeeService.getEmployeeMaxSalary();
+    //     return employeeMaxSalary;
+    // }
+//
+    // @GetMapping("/averageSalary")
+    // public String getCalculateAverageSalary() {
+    //     String averageSalaryEmployee = employeeService.getAndCalculateAverageSalary();
+    //     return averageSalaryEmployee;
+//
+    // }
 }

@@ -1,53 +1,49 @@
 package com.example.homework2_5collectionset.model;
 
+import java.util.Objects;
+
 public class Employee {
-    private static int employeeCounter;
-    private final int id;
-    private Person person;
-    private int department;
-    private int salary;
+    private String firstName;
+    private String lastName;
 
-    public Employee(String fullname, int department, int salary) {
-        this.fullname = fullname;
-        this.department = department;
-        this.salary = salary;
-        id = employeeCounter;
-        employeeCounter = employeeCounter + 1;
 
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public int getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Person getPerson() {
-        return person;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public int getDepartment() {
-        return department;
+    public String getLastName() {
+        return lastName;
     }
 
-    public int getSalary() {
-        return salary;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setDepartment(byte department) {
-        this.department = department;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName);
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
     }
 
     @Override
     public String toString() {
-        return "Сотрудник: " +
-                "табельный номер: " + id +
-                "; " + person +
-                ", отдел: " + department +
-                ", заработная плата=" + salary +
-                '$';
+        return "Сотрудник: " + lastName + " " + firstName;
     }
 
 
